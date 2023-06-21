@@ -1,9 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
-import {books} from "./books";
+import bookImage from '../../images/livro.png';
+import { getBooks } from "../../services/books";
+import { postFavorite } from "../../services/favorites";
 
 const InputContainer = styled.div`
   position: relative;
@@ -55,6 +57,23 @@ const ResultContainer = styled.div`
 
 const SearchInput = ({ placeholder }) => {
     const [searchedBooks, setSearchedBooks] = useState([])
+    const [books, setBooks] = useState([])
+
+
+
+    useEffect(() => {
+      fetchBooks()
+    }, [])
+
+    async function fetchBooks(){
+      const booksFromApi = await getBooks()
+      setBooks(booksFromApi)
+    }
+
+    async function insertFavorites(id){
+      await postFavorite(id)
+      alert(`Livro de ID: ${id} Favoritado`)
+    }
 
     function removerAcentos(str){
         return str
@@ -93,8 +112,8 @@ const SearchInput = ({ placeholder }) => {
           <SearchIcon icon={faSearch} />
         </InputContainer>
         { searchedBooks.map( bookInfo => (
-            <ResultContainer>
-                <img src={bookInfo.src}/>
+            <ResultContainer onClick={() => insertFavorites(bookInfo.id)}>
+                <img src={bookImage}/>
                 <p>{bookInfo.name} - {bookInfo.autor}</p>
             </ResultContainer>
         )) }

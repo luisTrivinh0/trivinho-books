@@ -2,6 +2,7 @@
 import user from '../../images/perfil.svg'
 import bag from '../../images/sacola.svg'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const MenuContainer = styled.div`
     display: flex;
@@ -21,6 +22,7 @@ const Option = styled.li`
     padding: 0 5px;
     cursor: pointer;
     min-width: 120px;
+
 `
 
 const IconsContainer = styled.ul`
@@ -34,7 +36,7 @@ const Icon = styled.li`
     width: 25px;
 `
 
-const optionTexts = ['Categorias', 'Favoritos', 'Minha Estante']
+const optionTexts = ['Favoritos']
 const menuIicons = [user, bag]
 
 function Menu(){
@@ -42,7 +44,7 @@ function Menu(){
         <MenuContainer>
             <OptionsContainer>
               {optionTexts.map( (text) => (
-                <Option><p>{text}</p></Option>
+                <Link to={`${text.toLowerCase()}`}><Option><p>{text}</p></Option></Link>
               ))}
             </OptionsContainer>
             <IconsContainer>

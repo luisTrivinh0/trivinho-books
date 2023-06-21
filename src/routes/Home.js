@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
-import Header from './components/Header';
 import styled from 'styled-components';
-import Search from './components/Search';
-import LatestReleases from './components/LatestReleases';
+import Search from '../components/Search';
+import LatestReleases from '../components/LatestReleases';
 
 const AppContainer = styled.div`
     width: 100vw;
@@ -11,14 +10,13 @@ const AppContainer = styled.div`
     overflow-x: auto;
 `
 
-function App() {
+function Home() {
   return (
     <AppContainer>
-      <Header />
       <Search />
       <LatestReleases />
     </AppContainer>
   );
 }
 
-export default App;
+export default Home;

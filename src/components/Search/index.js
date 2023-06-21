@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const SearchContainer = styled.section`
         color: #FFF;
         text-align: center;
-        padding: 85px 0;
+        padding: 60px 0px 385px 0;
         height: 270px;
         width: 100%;
 `
